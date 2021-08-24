@@ -4,7 +4,7 @@ let headerLeftSide = document.getElementById("headerLeftSide");
 let numOfCartItems = document.getElementById("numOfCartItems");
 let navToCartBtn = document.getElementById("navToCartBtn");
 
-axios.get("http://localhost:4200/cartLength")
+axios.get("/cartLength")
         .then(res => {
             cartNum = res.data
             numOfCartItems.innerText = `# Items - ${cartNum}`
@@ -30,7 +30,7 @@ const getAllPics = () => {
 }
 
 const getArtistName = async (id) => {
-    axios.get(`http://localhost:4200/artists/${id}`)
+    axios.get(`/artists/${id}`)
         .then (res => {
             let name = res.data
             console.log(name)
@@ -38,7 +38,7 @@ const getArtistName = async (id) => {
 };
 
 
-axios.get("http://localhost:4200/getAllNFTs")
+axios.get("/getAllNFTs")
     .then (res => {
         for (i = 0; i < 6; i++){
             nftInfo.push([res.data[i].smallPic, res.data[i].id, res.data[i].name, res.data[i].artist, res.data[i].artistName, res.data[i].price])
@@ -56,7 +56,7 @@ axios.get("http://localhost:4200/getAllNFTs")
     
     const getNFTpage = (e, page) => {
         console.log(page)
-        axios.get(`http://localhost:4200/nft/${page}`)
+        axios.get(`/nft/${page}`)
         .then((res) => {
             // console.log(res)
             window.location.replace("./nft.html")

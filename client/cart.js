@@ -4,7 +4,7 @@ let headerLeftSide = document.getElementById("headerLeftSide");
 let numOfCartItems = document.getElementById("numOfCartItems");
 let navToCartBtn = document.getElementById("navToCartBtn");
 
-axios.get("http://localhost:4200/cartLength")
+axios.get("/cartLength")
         .then(res => {
             cartNum = res.data
             numOfCartItems.innerText = `# Items - ${cartNum}`
@@ -98,7 +98,7 @@ const constructPage = (arr) => {
 
 
 
-axios.get("http://localhost:4200/cart")
+axios.get("/cart")
     .then(res => {
 
         constructPage(res.data)

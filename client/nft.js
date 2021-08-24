@@ -4,7 +4,7 @@ let headerLeftSide = document.getElementById("headerLeftSide");
 let numOfCartItems = document.getElementById("numOfCartItems");
 let navToCartBtn = document.getElementById("navToCartBtn");
 
-axios.get("http://localhost:4200/cartLength")
+axios.get("/cartLength")
         .then(res => {
             cartNum = res.data
             numOfCartItems.innerText = `# Items - ${cartNum}`
@@ -58,7 +58,7 @@ const updateGrandTotal = (isAddition, amount) => {
 
 
 const updateCart = (e) => {
-    axios.get("http://localhost:4200/cartLength")
+    axios.get("/cartLength")
         .then(res => {
             cartNum = res.data
             numOfCartItems.innerText = cartNum
@@ -90,9 +90,9 @@ const pageSetup = () => {
 
 
 // Attempts to get the info for the page from the server. If successful it will update elements on the DOM.
-axios.get("http://localhost:4200/nextpage/nft")
+axios.get("/nextpage/nft")
 .then(res => {
-    axios.get(`http://localhost:4200/nextpage/nft/${res.data}`)
+    axios.get(`/nextpage/nft/${res.data}`)
         .then(res => {
             pageInfo = res.data
             console.log(pageInfo)
@@ -146,7 +146,7 @@ const addToCartRequest = (e) => {
         "grandTotal": grandTotalAmountNumber
     };
 
-    axios.post("http://localhost:4200/addToCart", body)
+    axios.post("/addToCart", body)
         .then(res => {
 
             console.log(res.data.length)
