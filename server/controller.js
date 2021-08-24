@@ -1,8 +1,10 @@
-// const path = require("path");
+const path = require("path");
 
 // const artists = ["Beeple", "mad\.dog\.jones", "hipstergw", "TruthByNature", "Leossenas", "polygonatic"];
 const artistArr = [];
 let artistCount = 1;
+
+let nftPageOnDeck = null
 
 const nftArr = [];
 let nftCount = 1;
@@ -11,6 +13,7 @@ class artist {
     // add() { artistArr.push(this) }
     add() { artistArr.push(this) }
     increment() { artistCount++ }
+
     constructor(name, at, link){
         this.id = artistCount;
         this.name = name;
@@ -24,7 +27,6 @@ class artist {
 class NFT {
     add() {nftArr.push(this)}
     increment() {nftCount ++}
-    // announce(){console.log(`NFT created, name: ${this.name}, artist: ${artistArr[(this.id-1)}`)}
     largePic() {}
 
     constructor(name, artist, price){
@@ -32,8 +34,8 @@ class NFT {
         this.name = name; 
         this.artist = artist;
         this.price = price;
-        this.largePic = `..server/images/${this.id}-large.png`
-        this.smallPic = `..server/images/${this.id}-small.png`
+        this.largePic = `images/${this.id}-large.png`
+        this.smallPic = `images/${this.id}-small.png`
         this.add();
         this.increment();
         // this.announce();
@@ -50,7 +52,7 @@ const artist04 = new artist("leossenas", "@leossenas");
 const artist05 = new artist("Polygonatic", "@polygonatic");
 const artist06 = new artist("Truth By Nature", "@TruthByNature");
 
-console.log(artistArr)
+// console.log(artistArr)
 
 // Instantiating all the NFTs.
 const item01 = new NFT("First Emoji", 0, 1500000);
@@ -60,7 +62,7 @@ const item04 = new NFT("Journey Begins", 5, 47500);
 const item05 = new NFT("HOUSTON, WE HAVE A PROBLEM!!!", 4, 12500);
 const item06 = new NFT("Expedition", 2, 2500);
 
-console.log(nftArr)
+// console.log(nftArr)
 
 
 
@@ -76,6 +78,19 @@ module.exports = {
 
     getAllNFTs: (req, res) => {
         res.status(200).send(nftArr)
+    },
+
+    nftSend: (req, res) => {
+        nftPageOnDeck = req.params.id
+        res.status(200).send("Cool cool cool.")
+    },
+
+    nftPage: (req, res) => {
+        res.status(200).send(nftPageOnDeck)
+    },
+
+    nftSetup: (req, res) => {
+        res.status(200).send(nftArr[req.params.id-1])
     }
 
 }
