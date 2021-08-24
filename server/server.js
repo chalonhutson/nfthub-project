@@ -28,7 +28,8 @@ app.get("/nft/:id", ctrl.nftSend)
 app.get("/nextpage/nft", ctrl.nftPage)
 app.get("/nextpage/nft/:id", ctrl.nftSetup)
 app.post("/addToCart", ctrl.addToCart)
-// app.get("/image", ctrl.getImg)
+app.get("/cartLength", ctrl.itemsInCart)
+app.get("/cart", ctrl.getCart)
 
 
 

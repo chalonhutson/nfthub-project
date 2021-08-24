@@ -5,61 +5,94 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>This is a test.</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="./nft.css">
+
+    <title id="title">NFT Item</title>
 </head>
 
 <body>
 
-    <div id="leftSide">
-        <img src="./fail-large.png" id="mainPic">
-    </div>
+    <header>
 
-    <div id="rightSide">
+        <header>
+            <div id="headerContainer">
+                <div id="headerLeftSide">
+                    <h1>NFT Hub</h1>
+                </div>
+        
+                <div id="headerRightSide">
+                    <h3 id="numOfCartItems"># Items - 0</h3>
+                    <button id="navToCartBtn">Cart</button>
+                </div>
+            </div>
+    
+        </header>
+    </header>
 
-        <div id="names">
-            <h1 id="nftName">"Art Name"</h1>
-            <h1 id="artistName">By Artist Name</h1>
+
+
+    <main>
+        <div id="overallContainer">
+
+            <div id="leftSide">
+                <img src="./fail-large.png" id="mainPic">
+            </div>
+        
+            <div id="rightSide">
+        
+                <div id="names">
+                    <h1 id="nftName">"Art Name"</h1>
+                    <h1 id="artistName">By Artist Name</h1>
+                </div>
+        
+                <div class="totals" id="basePriceDiv">
+                    <h1>Base Price: </h1>
+                    <h1 class="priceAmounts" id="basePriceTotal">$60000</h1>
+                </div>
+        
+                <div id="addons">
+        
+                    <div class= "addonDivs" id="ledAddon">
+                        <input type="checkbox" class="check " id="ledCheckbox">
+                        <h2>Add LED Lights - </h2>
+                        <h2 class="priceAmounts" id="ledPrice">$150</h2>
+                    </div>
+        
+                    <div class="addonDivs" id="signedCopyAddon">
+                        <input type="checkbox" class="check" id="signedCopyCheckbox">
+                        <h2>Add Signed Copy - </h2>
+                        <h2 class="priceAmounts" id="signedCopyPrice">$500</h2>
+                    </div>
+        
+                    <div class= "addonDivs" id="posterAddon">
+                        <input type="checkbox" class="check" id="posterCheckbox">
+                        <h2>Add Poster Copy - </h2>
+                        <h2 class="priceAmounts" id="posterPriceAmount">$20</h2>
+                    </div>
+        
+                </div>
+        
+                <div id="beforeCheckout">
+                    <div class="totals" id="grandTotalDiv">
+                        <h1>Grand Total: </h1>
+                        <h1 class="priceAmounts" id="grandTotalAmount">$60,170</h1>
+                    </div>
+        
+                    <button id="addToCartBtn">Add To Cart</button>
+        
+                </div>
+        
+        
+            </div>
         </div>
 
-        <div class="totals" id="basePriceDiv">
-            <h1>Base Price: </h1>
-            <h1 class="priceAmounts" id="basePriceTotal">$60000</h1>
-        </div>
-
-        <div id="addons">
-
-            <div id="ledAddon">
-                <input type="checkbox" id="ledCheckbox">
-                <h2>Add LED Lights - </h2>
-                <h2 class="priceAmounts" id="ledPrice">$150</h2>
-            </div>
-
-            <div id="signedCopyAddon">
-                <input type="checkbox" id="signedCopyCheckbox">
-                <h2>Add Signed Copy - </h2>
-                <h2 class="priceAmounts" id="signedCopyPrice">$500</h2>
-            </div>
-
-            <div id="posterAddon">
-                <input type="checkbox" id="posterCheckbox">
-                <h2>Add Poster Copy - </h2>
-                <h2 class="priceAmounts" id="posterPriceAmount">$20</h2>
-            </div>
-
-        </div>
-
-        <div id="beforeCheckout">
-            <div class="totals" id="grandTotalDiv">
-                <h1>Grand Total: </h1>
-                <h1 class="priceAmounts" id="grandTotalAmount">$60,170</h1>
-            </div>
-
-            <button id="addToCartBtn">Add To Cart</button>
-
-        </div>
-
-
-    </div>
+    </main>
 
 
 

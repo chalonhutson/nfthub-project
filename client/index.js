@@ -1,8 +1,25 @@
 
+// Grabs header elements
+let headerLeftSide = document.getElementById("headerLeftSide");
+let numOfCartItems = document.getElementById("numOfCartItems");
+let navToCartBtn = document.getElementById("navToCartBtn");
+
+axios.get("http://localhost:4200/cartLength")
+        .then(res => {
+            cartNum = res.data
+            numOfCartItems.innerText = `# Items - ${cartNum}`
+            // console.log(typeof(res.data))
+        });
+
+headerLeftSide.addEventListener("click", (e) => window.location.replace("./index.html"))
+navToCartBtn.addEventListener("click", (e) => window.location.replace("./cart.html"))
+
 // Grabs main elements on the DOM.
 let largePics = document.getElementsByClassName("nft-large-pics");
 let names = document.getElementsByClassName("names");
 let prices = document.getElementsByClassName("prices");
+
+
 
 // Variable that is updated with the initial GET request
 const nftInfo = []

@@ -1,17 +1,34 @@
-const { default: axios } = require("axios");
+
+// Grabs header elements
+let headerLeftSide = document.getElementById("headerLeftSide");
+let numOfCartItems = document.getElementById("numOfCartItems");
+let navToCartBtn = document.getElementById("navToCartBtn");
+
+axios.get("http://localhost:4200/cartLength")
+        .then(res => {
+            cartNum = res.data
+            numOfCartItems.innerText = `# Items - ${cartNum}`
+            // console.log(typeof(res.data))
+        });
+
+headerLeftSide.addEventListener("click", (e) => window.location.replace("./index.html"))
+navToCartBtn.addEventListener("click", (e) => window.location.replace("./cart.html"))
 
 // Page info is set when the page is visited, and used for updating all the HTML elements. If null, elements will appear on page but won't be updated.
 let pageInfo = null;
 let nftID = null;
-let numOfCartItems = 0;
+let cartNum = 0;
 
 // Grabbing the main elements from the HTML.
+
+    // Main elements
 const mainPic = document.getElementById("mainPic");
 const nftName = document.getElementById("nftName");
 const artistName = document.getElementById("artistName");
 const basePriceTotal = document.getElementById("basePriceTotal");
 const grandTotalAmount = document.getElementById("grandTotalAmount");
 const addToCartBtn = document.getElementById("addToCartBtn");
+const title = document.getElementById("title");
 
 // Addon DOM elements and variables
 const ledCheckBox = document.getElementById("ledCheckbox");
@@ -39,6 +56,17 @@ const updateGrandTotal = (isAddition, amount) => {
     grandTotalAmount.innerText = `\$${grandTotalAmountNumber/100}`
 };
 
+
+const updateCart = (e) => {
+    axios.get("http://localhost:4200/cartLength")
+        .then(res => {
+            cartNum = res.data
+            numOfCartItems.innerText = cartNum
+            console.log(typeof(res.data))
+        });
+};
+
+
 // This function is called when the inital GET request is successful, and filled the DOM with updated elements.
 const pageSetup = () => {
     if (pageInfo !== null){
@@ -54,6 +82,8 @@ const pageSetup = () => {
         posterPriceAmount.innerText = `\$${pageInfo.posterCopyPrice/100}`
         addPosterCopyAmount = pageInfo.posterCopyPrice
         updateGrandTotal(true, pageInfo.price)
+        title.innerText = `${pageInfo.name} by ${pageInfo.artistName}`
+        updateCart()
         
     } else {alert("Error loading page.")}
 }
@@ -106,18 +136,23 @@ posterCheckbox.addEventListener("click", (e) => updateCheckbox(e, 2));
 
 
 
-// const addToCartRequest = (e) => {
-//     body = {
-//         "item": nftID,
-//         "led": addLEDLights,
-//         "signedCopy": addSignedCopy,
-//         "poster": addPosterCopy
-//     };
 
-//     axios.post("http://localhost:4200/addToCart", body)
-//         .then(res => {
-//             console.log(res.data.length)
-//         })
-// };
+const addToCartRequest = (e) => {
+    body = {
+        "item": nftID,
+        "led": addLEDLights,
+        "signedCopy": addSignedCopy,
+        "poster": addPosterCopy,
+        "grandTotal": grandTotalAmountNumber
+    };
 
-// addToCartBtn.addEventListener("click", addToCartRequest);
+    axios.post("http://localhost:4200/addToCart", body)
+        .then(res => {
+
+            console.log(res.data.length)
+        })
+
+    updateCart()
+};
+
+addToCartBtn.addEventListener("click", addToCartRequest);

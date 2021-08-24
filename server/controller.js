@@ -101,37 +101,52 @@ module.exports = {
     },
 
     nftSetup: (req, res) => {
-        res.status(200).send(nftArr[req.params.id-1])
+        res.status(200).send(nftArr[req.params.id - 1])
     },
 
-    addToCart: (req, res) => {
-        const { item, led, signedCopy, poster} = req.body;
+       addToCart: (req, res) => {
+        const { item, led, signedCopy, poster, grandTotal } = req.body;
 
         let alreadyUsed = false;
 
-        for (let i = 0; i < cart.length; i++){
-            if (cart[i].id === item){
+        for (let i = 0; i < cart.length; i++) {
+            if (cart[i].id === item) {
                 alreadyUsed = true;
                 res.status(200).send(cart)
             }
         }
 
-        if (alreadyUsed === false){
+        if (alreadyUsed === false) {
             let newItem = {
                 id: item,
                 led: led,
-                ledPrice: nftArr[item-1].ledPrice,
+                ledPrice: nftArr[item - 1].ledPrice,
                 signedCopy: signedCopy,
-                signedPrice: nftArr[item-1].signedCopyPrice,
+                signedPrice: nftArr[item - 1].signedCopyPrice,
                 poster: poster,
-                posterPrice: nftArr[item-1].posterCopyPrice
+                posterPrice: nftArr[item - 1].posterCopyPrice,
+                artName: nftArr[item - 1].name,
+                artistName: nftArr[item - 1].artistName,
+                basePrice: nftArr[item - 1].price,
+                smallPic: nftArr[item - 1].smallPic,
+                grandTotal: grandTotal
             }
-    
+
             cart.push(newItem)
             console.log("New item pushed to cart: " + newItem.id)
             res.status(200).send(cart)
         };
 
+    },
+
+    itemsInCart: (req, res) => {
+        let length = cart.length
+        length = length.toString()
+        res.status(200).send(length)
+    },
+
+    getCart: (req, res) => {
+        res.status(200).send(cart)
     }
 
 };

@@ -1,6 +1,3 @@
-/* font-family: 'Bebas Neue', cursive;
-font-family: 'Oswald', sans-serif */
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -54,73 +51,93 @@ header {
     border-radius: 5px;
 }
 
-
-/* ---- Main stuff ---- */
-
 main {
     display: flex;
-    justify-content: center;
-
+    flex-direction: column;
+    align-items: center;
+    font-family: Bebas Neue;
 }
 
-#everything {
+#overallContainer {
+    margin-top: 50px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     align-items: center;
-
-    margin-top: 25px;
-
-    width: 650px;
+    width: 750px;
 }
 
-#artTitleSection {
-    font-family: Bebas Neue;
-    font-size: 20pt;
+#mainPic {
+    border: 3px solid black;
+    border-radius: 5px;
+}
+
+#rightSide {
     display: flex;
-    width: 650px;
-    padding-left: 15px;
+    flex-direction: column;
+    margin-top: 20px;
+    width: 673px;
+
 }
 
-#itemsContainer {
+#names {
+    color: #627357;
+    display: flex;
+    flex-direction: column;
+}
+
+#basePriceDiv {
+    font-size: 30px;
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
+    margin-top: 20px;
 }
 
-.items {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-
-    margin: 10px 10px;
-
-    width: 300px;
-    font-family: Bebas Neue;
-    border: 2px solid black;
-    border-radius: 2px;
+.priceAmounts {
+    color: #4e8058;
 }
 
-.nft-large-pics {
-    cursor: pointer;
+#nftName {
+    font-size: 36pt;
 }
 
-.information {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding: 5px 5px;
-}
-
-.names {
-    color: black;
+#artistName{
     font-size: 20pt;
 }
 
-.prices {
-    color: #4e8058;
-    font-size: 30pt;
+.addonDivs {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 20px;
 }
 
+.check {
+    cursor: pointer;
+
+    margin-right: 15px;
+}
+
+#beforeCheckout {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.totals {
+    display: flex;
+    flex-direction: row;
+    font-size: 24pt;
+}
+
+#addToCartBtn {
+    cursor: pointer;
+
+    background-color: #4e8058;
+    height: 50px;
+    font-family: bebas Neue;
+    font-size: 20pt;
+    color: white;
+    border-radius: 5px;
+    
+}
 

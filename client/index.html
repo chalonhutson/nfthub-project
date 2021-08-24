@@ -1,43 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="./index.css">
+
+
     <title>NFT Hub</title>
 </head>
+
 <body>
-    <h1>Testing 1 2 3 4.</h1>
-    <div class="items" id="item0">
-        <img src="./fail-small.png" class="nft-large-pics" id="nftPic0">
-        <h2 class="names" id="names0">NFT name - Artist name</h2>
-        <h3 class="prices" id="prices0">$100</h3>
-    </div>
-    <div class="items" id="item1">
-        <img src="./fail-small.png" class="nft-large-pics" id="nftPic1">
-        <h2 class="names" id="names1">NFT name - Artist name</h2>
-        <h3 class="prices" id="prices1">$100</h3>
-    </div>
-    <div class="items" id="item2">
-        <img src="./fail-small.png" class="nft-large-pics" id="nftPic2">
-        <h2 class="names" id="names2">NFT name - Artist name</h2>
-        <h3 class="prices" id="prices2">$100</h3>
-    </div>
-    <div class="items" id="item3">
-        <img src="./fail-small.png" class="nft-large-pics" id="nftPic3">
-        <h2 class="names" id="names3">NFT name - Artist name</h2>
-        <h3 class="prices" id="prices3">$100</h3>
-    </div>
-    <div class="items" id="item4">
-        <img src="./fail-small.png" class="nft-large-pics" id="nftPic4">
-        <h2 class="names" id="names4">NFT name - Artist name</h2>
-        <h3 class="prices" id="prices4">$100</h3>
-    </div>
-    <div class="items" id="item5">
-        <img src="./fail-small.png" class="nft-large-pics" id="nftPic5">
-        <h2 class="names" id="names5">NFT name - Artist name</h2>
-        <h3 class="prices" id="prices5">$100</h3>
-    </div>
+
+    <header>
+        <div id="headerContainer">
+            <div id="headerLeftSide">
+                <h1>NFT Hub</h1>
+            </div>
+    
+            <div id="headerRightSide">
+                <h3 id="numOfCartItems"># Items - 0</h3>
+                <button id="navToCartBtn">Cart</button>
+            </div>
+        </div>
+
+    </header>
+
+    <main>
+
+        <div id="everything">
+
+            <div id="artTitleSection">
+                <h1 id="artTitle">NFT Art</h1>
+            </div>
+
+            <div id="itemsContainer">
+                <div <div class="items" id="item0">
+                    <img src="./fail-small.png" class="nft-large-pics" id="nftPic0">
+                    <div class="information">
+                        <h2 class="names" id="names0">NFT name - Artist name</h2>
+                        <h3 class="prices" id="prices0">$100</h3>
+                    </div>
+                </div>
+                <div class="items" id="item1">
+                    <img src="./fail-small.png" class="nft-large-pics" id="nftPic1">
+                    <div class="information">
+                        <h2 class="names" id="names1">NFT name - Artist name</h2>
+                        <h3 class="prices" id="prices1">$100</h3>
+                    </div>
+                </div>
+                <div class="items" id="item2">
+                    <img src="./fail-small.png" class="nft-large-pics" id="nftPic2">
+                    <div class="information">
+                        <h2 class="names" id="names2">NFT name - Artist name</h2>
+                        <h3 class="prices" id="prices2">$100</h3>
+                    </div>
+                </div>
+                <div class="items" id="item3">
+                    <img src="./fail-small.png" class="nft-large-pics" id="nftPic3">
+                    <div class="information">
+                        <h2 class="names" id="names3">NFT name - Artist name</h2>
+                        <h3 class="prices" id="prices3">$100</h3>
+                    </div>
+                </div>
+                <div class="items" id="item4">
+                    <img src="./fail-small.png" class="nft-large-pics" id="nftPic4">
+                    <div class="information">
+                        <h2 class="names" id="names4">NFT name - Artist name</h2>
+                        <h3 class="prices" id="prices4">$100</h3>
+                    </div>
+                </div>
+                <div class="items" id="item5">
+                    <img src="./fail-small.png" class="nft-large-pics" id="nftPic5">
+                    <div class="information">
+                        <h2 class="names" id="names5">NFT name - Artist name</h2>
+                        <h3 class="prices" id="prices5">$100</h3>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </main>
 
 
 </body>
@@ -47,4 +99,5 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <script src="index.js"></script>
+
 </html>
