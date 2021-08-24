@@ -1,8 +1,10 @@
 const path = require("path");
 
-// const artists = ["Beeple", "mad\.dog\.jones", "hipstergw", "TruthByNature", "Leossenas", "polygonatic"];
+let cart = []
+
+
 const artistArr = [];
-let artistCount = 1;
+let artistCount = 0;
 
 let nftPageOnDeck = null
 
@@ -29,13 +31,17 @@ class NFT {
     increment() {nftCount ++}
     largePic() {}
 
-    constructor(name, artist, price){
+    constructor(name, artist, artistName, price, ledPrice, signedCopyPrice, posterCopyPrice){
         this.id = nftCount;
         this.name = name; 
         this.artist = artist;
+        this.artistName = artistName;
         this.price = price;
         this.largePic = `images/${this.id}-large.png`
         this.smallPic = `images/${this.id}-small.png`
+        this.ledPrice = ledPrice;
+        this.signedCopyPrice = signedCopyPrice;
+        this.posterCopyPrice = posterCopyPrice;
         this.add();
         this.increment();
         // this.announce();
@@ -55,12 +61,12 @@ const artist06 = new artist("Truth By Nature", "@TruthByNature");
 // console.log(artistArr)
 
 // Instantiating all the NFTs.
-const item01 = new NFT("First Emoji", 0, 1500000);
-const item02 = new NFT("Observance", 2, 5000);
-const item03 = new NFT("Buddies", 4, 250000);
-const item04 = new NFT("Journey Begins", 5, 47500);
-const item05 = new NFT("HOUSTON, WE HAVE A PROBLEM!!!", 4, 12500);
-const item06 = new NFT("Expedition", 2, 2500);
+const item01 = new NFT("First Emoji", 0, "Beeple", 1500000, 15000, 50000, 2000);
+const item02 = new NFT("Observance", 2, "hipstergw", 5000, 2500, 500, 500);
+const item03 = new NFT("Buddies", 4, "Polygonatic", 250000, 10000, 15000, 2000);
+const item04 = new NFT("Journey Begins", 5, "Truth By Nature", 47500, 7500, 5000, 500);
+const item05 = new NFT("HOUSTON, WE HAVE A PROBLEM!!!", 4, "leossenas", 12500, 5000, 2500, 1000);
+const item06 = new NFT("Expedition", 2, "hipstergw", 2500, 2500, 500, 500);
 
 // console.log(nftArr)
 
@@ -74,6 +80,11 @@ module.exports = {
 
     artists: (req, res) => {
         res.status(200).send(artistArr)
+    },
+
+    getArtist: (req, res) => {
+        let artistname = artistArr[req.params.id].name
+        res.status(200).send(artistname)
     },
 
     getAllNFTs: (req, res) => {
@@ -91,6 +102,36 @@ module.exports = {
 
     nftSetup: (req, res) => {
         res.status(200).send(nftArr[req.params.id-1])
+    },
+
+    addToCart: (req, res) => {
+        const { item, led, signedCopy, poster} = req.body;
+
+        let alreadyUsed = false;
+
+        for (let i = 0; i < cart.length; i++){
+            if (cart[i].id === item){
+                alreadyUsed = true;
+                res.status(200).send(cart)
+            }
+        }
+
+        if (alreadyUsed === false){
+            let newItem = {
+                id: item,
+                led: led,
+                ledPrice: nftArr[item-1].ledPrice,
+                signedCopy: signedCopy,
+                signedPrice: nftArr[item-1].signedCopyPrice,
+                poster: poster,
+                posterPrice: nftArr[item-1].posterCopyPrice
+            }
+    
+            cart.push(newItem)
+            console.log("New item pushed to cart: " + newItem.id)
+            res.status(200).send(cart)
+        };
+
     }
 
-}
+};

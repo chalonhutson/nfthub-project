@@ -1,56 +1,63 @@
 
-
+// Grabs main elements on the DOM.
 let largePics = document.getElementsByClassName("nft-large-pics");
+let names = document.getElementsByClassName("names");
+let prices = document.getElementsByClassName("prices");
 
-const testBtn = document.getElementById("test-btn")
-
-const newPics = []
+// Variable that is updated with the initial GET request
+const nftInfo = []
 
 
 const getAllPics = () => {
 
 }
 
+const getArtistName = async (id) => {
+    axios.get(`http://localhost:4200/artists/${id}`)
+        .then (res => {
+            let name = res.data
+            console.log(name)
+        })
+};
+
+
 axios.get("http://localhost:4200/getAllNFTs")
     .then (res => {
         for (i = 0; i < 6; i++){
-            newPics.push([res.data[i].smallPic, res.data[i].id])
+            nftInfo.push([res.data[i].smallPic, res.data[i].id, res.data[i].name, res.data[i].artist, res.data[i].artistName, res.data[i].price])
         }
-        if (newPics.length > 0){
-            for (i = 0; i < newPics.length; i++){
-                largePics[i].src = newPics[i][0]
+        if (nftInfo.length > 0){
+            // let artistName = null
+            for (j = 0; j < 6; j++){
+                largePics[j].src = nftInfo[j][0]
+                names[j].innerText = `${nftInfo[j][2]} - ${nftInfo[j][4]}`
+                prices[j].innerText = `\$${(nftInfo[j][5])/100}`
             }
         }
-    })
-
-// const getSinglePic = () => {
-//     axios.get("http://localhost:4200/getImg")
-//         .then(res => {
-//             console.log(res)
-//         })
-// }
-
-
-const getNFTpage = (e, page) => {
-    console.log(page)
-    axios.get(`http://localhost:4200/nft/${page}`)
+    });
+    
+    
+    const getNFTpage = (e, page) => {
+        console.log(page)
+        axios.get(`http://localhost:4200/nft/${page}`)
         .then((res) => {
-            console.log(res)
+            // console.log(res)
             window.location.replace("./nft.html")
         });
-}
+    }
+    
+    
+    // console.log(newPics)
+    // console.log(largePics)
+    
+        
 
-
-console.log(newPics)
-console.log(largePics)
-
-
-largePics[0].addEventListener("click", (e) => {getNFTpage(e, newPics[0][1])})
-largePics[1].addEventListener("click", (e) => {getNFTpage(e, newPics[1][1])})
-largePics[2].addEventListener("click", (e) => {getNFTpage(e,newPics[2][1])})
-largePics[3].addEventListener("click", (e) => {getNFTpage(e, newPics[3][1])})
-largePics[4].addEventListener("click", (e) => {getNFTpage(e, newPics[4][1])})
-largePics[5].addEventListener("click", (e) => {getNFTpage(e, newPics[5][1])})
+largePics[0].addEventListener("click", (e) => {getNFTpage(e, nftInfo[0][1])})
+largePics[1].addEventListener("click", (e) => {getNFTpage(e, nftInfo[1][1])})
+largePics[2].addEventListener("click", (e) => {getNFTpage(e, nftInfo[2][1])})
+largePics[3].addEventListener("click", (e) => {getNFTpage(e, nftInfo[3][1])})
+largePics[4].addEventListener("click", (e) => {getNFTpage(e, nftInfo[4][1])})
+largePics[5].addEventListener("click", (e) => {getNFTpage(e, nftInfo[5][1])})
 
 
 // getAllPics()
