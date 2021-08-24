@@ -30,6 +30,7 @@ app.get("/nextpage/nft/:id", ctrl.nftSetup)
 app.post("/addToCart", ctrl.addToCart)
 app.get("/cartLength", ctrl.itemsInCart)
 app.get("/cart", ctrl.getCart)
+app.get("/remove/:el", ctrl.removeItem)
 
 
 

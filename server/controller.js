@@ -147,6 +147,13 @@ module.exports = {
 
     getCart: (req, res) => {
         res.status(200).send(cart)
+    },
+
+    removeItem: (req, res) => {
+        console.log(cart.length)
+        cart.splice(req.params.el, 1)
+        console.log(cart.length)
+        res.status(200).send(cart)
     }
 
 };

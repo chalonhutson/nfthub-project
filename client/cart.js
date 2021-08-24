@@ -4,12 +4,23 @@ let headerLeftSide = document.getElementById("headerLeftSide");
 let numOfCartItems = document.getElementById("numOfCartItems");
 let navToCartBtn = document.getElementById("navToCartBtn");
 
-axios.get("/cartLength")
-        .then(res => {
-            cartNum = res.data
-            numOfCartItems.innerText = `# Items - ${cartNum}`
-            // console.log(typeof(res.data))
-        });
+const updateCartLength = () => {
+    axios.get("/cartLength")
+            .then(res => {
+                cartNum = res.data
+                numOfCartItems.innerText = `# Items - ${cartNum}`
+                // console.log(typeof(res.data))
+            });
+};
+
+
+
+// axios.get("/cartLength")
+//             .then(res => {
+//                 cartNum = res.data
+//                 numOfCartItems.innerText = `# Items - ${cartNum}`
+//                 // console.log(typeof(res.data))
+//             });
 
 headerLeftSide.addEventListener("click", (e) => window.location.replace("./index.html"))
 navToCartBtn.addEventListener("click", (e) => window.location.replace("./cart.html"))
@@ -25,11 +36,17 @@ const placeOrderBtn = document.getElementById("placeOrderBtn");
 
 let orderTotal = 0
 
+const removeItem = (el) => {
+    axios.get(`/remove/${el}`)
+        .then((res) => {console.log(res)})
+}
+
 
 const constructPage = (arr) => {
     totalItemsText.innerText = `Items in cart: ${arr.length}`
 
     for (i = 0; i < arr.length; i++) {
+        const arrEl = i
         console.log(arr[i])
         orderTotal += arr[i].grandTotal
         orderTotalAmount.innerText = ` \$${orderTotal/100}`
@@ -40,9 +57,25 @@ const constructPage = (arr) => {
 
         let imageSmall = document.createElement("img")
         imageSmall.src = arr[i].smallPic
+        // imageSmall.src = "./images/1-small.png"
         imageSmall.className = "imageSmall"
         singleItem.appendChild(imageSmall)
-
+        imageSmall.addEventListener("mouseenter", (e) => {
+            imageSmall.src = "./images/redx-small.png"
+        })
+        imageSmall.addEventListener("mouseleave", (e) => {
+            imageSmall.src = "arr[i].smallPic"
+        })
+        imageSmall.addEventListener("click", (e) => {
+            // orderTotal -= arr[i].grandTotal
+            singleItem.remove()
+            removeItem(arrEl)
+            // orderTotalAmount.innerText = ` \$${orderTotal/100}`
+            
+            updateCartLength()
+            // window.location.replace("./nft.html")
+        })
+        
         let rightHalf = document.createElement("div")
         rightHalf.className = "rightHalf"
         singleItem.appendChild(rightHalf)
@@ -102,7 +135,7 @@ axios.get("/cart")
     .then(res => {
 
         constructPage(res.data)
-
+        updateCartLength();
         // console.log(res.data)
     })
 
