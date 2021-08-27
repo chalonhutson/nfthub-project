@@ -61,7 +61,7 @@ const updateCart = (e) => {
     axios.get("/cartLength")
         .then(res => {
             cartNum = res.data
-            numOfCartItems.innerText = cartNum
+            numOfCartItems.innerText = `# Items - ${cartNum}`
             console.log(typeof(res.data))
         });
 };

@@ -41,6 +41,8 @@ const removeItem = (el) => {
         .then((res) => {console.log(res)})
 }
 
+let tempImgSrc = null
+
 
 const constructPage = (arr) => {
     totalItemsText.innerText = `Items in cart: ${arr.length}`
@@ -61,10 +63,12 @@ const constructPage = (arr) => {
         imageSmall.className = "imageSmall"
         singleItem.appendChild(imageSmall)
         imageSmall.addEventListener("mouseenter", (e) => {
+            tempImgSrc = imageSmall.src
             imageSmall.src = "./images/redx-small.png"
         })
         imageSmall.addEventListener("mouseleave", (e) => {
-            imageSmall.src = "arr[i].smallPic"
+            imageSmall.src = tempImgSrc
+            // imageSmall.src = "arr[i].smallPic"
         })
         imageSmall.addEventListener("click", (e) => {
             // orderTotal -= arr[i].grandTotal
