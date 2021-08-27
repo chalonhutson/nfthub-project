@@ -62,7 +62,6 @@ const updateCart = (e) => {
         .then(res => {
             cartNum = res.data
             numOfCartItems.innerText = `# Items - ${cartNum}`
-            console.log(typeof(res.data))
         });
 };
 
@@ -95,7 +94,6 @@ axios.get("/nextpage/nft")
     axios.get(`/nextpage/nft/${res.data}`)
         .then(res => {
             pageInfo = res.data
-            console.log(pageInfo)
             pageSetup()
         })
     });
@@ -148,11 +146,10 @@ const addToCartRequest = (e) => {
 
     axios.post("/addToCart", body)
         .then(res => {
-
-            console.log(res.data.length)
+            // console.log(res.data.length)
+            updateCart()
         })
 
-    updateCart()
 };
 
 addToCartBtn.addEventListener("click", addToCartRequest);

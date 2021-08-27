@@ -12,15 +12,13 @@ const nftArr = [];
 let nftCount = 1;
 
 class artist {
-    // add() { artistArr.push(this) }
     add() { artistArr.push(this) }
     increment() { artistCount++ }
 
-    constructor(name, at, link){
+    constructor(name, at){
         this.id = artistCount;
         this.name = name;
         this.at = at;
-        // this.link = link;
         this.add();
         this.increment()
     }
@@ -44,9 +42,7 @@ class NFT {
         this.posterCopyPrice = posterCopyPrice;
         this.add();
         this.increment();
-        // this.announce();
     }
-
 };
 
 
@@ -58,7 +54,6 @@ const artist04 = new artist("leossenas", "@leossenas");
 const artist05 = new artist("Polygonatic", "@polygonatic");
 const artist06 = new artist("Truth By Nature", "@TruthByNature");
 
-// console.log(artistArr)
 
 // Instantiating all the NFTs.
 const item01 = new NFT("First Emoji", 0, "Beeple", 1500000, 15000, 50000, 2000);
@@ -150,9 +145,7 @@ module.exports = {
     },
 
     removeItem: (req, res) => {
-        console.log(cart.length)
         cart.splice(req.params.el, 1)
-        console.log(cart.length)
         res.status(200).send(cart)
     }
 
